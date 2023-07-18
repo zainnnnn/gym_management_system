@@ -90,13 +90,20 @@
                 <li><a href="#">View Profile</a></li>
               </ul>
             </li>
-            <li><a class="nav-link scrollto" href="#signin">Signin</a></li>
+
+            {% if not request.user.is_authenticated %}
+            <li><a class="nav-link scrollto" href="/signup">Signin</a></li>
+            {% else %}
+            <li><a class="nav-link scrollto" href="/logout">Signout</a></li>
+
+            {% endif %}
           </ul>
           <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
         <!-- .navbar -->
-
-        <a href="/awards" class="get-started-btn scrollto">Gym Awards</a>
+        {% if request.user.is_authenticated %}
+        <a href="/" class="get-started-btn scrollto">Welcome</a>
+        {% endif %}
       </div>
     </header>
     <!-- End Header -->
